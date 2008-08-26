@@ -33,14 +33,18 @@ void usage()
 
 int main (int argc, char *argv[])
 {
-	if (argc != 2)
+	if (argc != 3)
 		usage();
-	if (strlen(argv[1]) != 1)
+	if (strlen(argv[2]) != 1)
+		usage();
+	if (strlen(argv[2]) != 1)
 		usage();
 	if ((argv[1][0] < '0') || (argv[1][0] > '9'))
 		usage();
+	if ((argv[2][0] < '0') || (argv[2][0] > '1'))
+		usage();
 	
 	usbrelay_init();
-	usbrelay_set(argv[1][0] - '0');
+	usbrelay_set(argv[1][0] - '0', argv[2][0] - '0');
 	return 0;
 }

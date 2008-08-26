@@ -45,6 +45,8 @@ uchar	usbFunctionSetup(uchar data[8])
 		}
 		break;
 	case REQUEST_SET_RELAYS:
+		if (request->wValue.bytes[1] != 0)
+			return 0;
 		if (request->wValue.bytes[0] & 0x01)
 			PORTB|= (1<<BIT_SWITCH);
 		else

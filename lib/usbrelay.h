@@ -7,4 +7,4 @@
 
 int usbrelay_init();
 uchar usbrelay_count();
-int usbrelay_set(uchar set);
+int usbrelay_set(uchar number, uchar value);

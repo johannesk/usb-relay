@@ -68,9 +68,9 @@ static int usb_do(int direction, int request, char value, char *data, int len)
 	return 0;
 }
 
-int usbrelay_set(uchar set)
+int usbrelay_set(uchar number, uchar value)
 {
-	return usb_do(USB_ENDPOINT_OUT, REQUEST_SET, set, 0, 0);
+	return usb_do(USB_ENDPOINT_OUT, REQUEST_SET, number*256+value, 0, 0);
 }
 
 uchar usbrelay_count()
