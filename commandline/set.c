@@ -44,7 +44,10 @@ int main (int argc, char *argv[])
 	if ((argv[2][0] < '0') || (argv[2][0] > '1'))
 		usage();
 	
-	usbrelay_init();
+	if (usbrelay_init()!=0) {
+		printf("%s\n", usbrelay_strerror());
+		return 1;
+	}
 	usbrelay_set(argv[1][0] - '0', argv[2][0] - '0');
 	return 0;
 }

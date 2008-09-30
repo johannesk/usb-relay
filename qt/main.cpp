@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QLabel>
 #include "relaycheckbox.h"
 
 extern "C" {
@@ -17,17 +18,22 @@ public:
 MyWidget::MyWidget(QWidget *parent)
 	: QWidget(parent)
 {
-	int count;
-	usbrelay_init();
-	count= usbrelay_count();
 	QVBoxLayout *layout = new QVBoxLayout;
 
-	RelayCheckbox *relay;
-	int i;
-	count= 1;
-	for (i=0; i < count; i++) {
-		relay= new RelayCheckbox(i);
-		layout-> addWidget(relay);
+	if(usbrelay_init() != 0) {
+		QLabel *label= new QLabel(QString("No Relays available (")+usbrelay_strerror()+")");
+		layout->addWidget(label);
+	}
+	else {
+		int count= usbrelay_count();
+
+		RelayCheckbox *relay;
+		int i;
+		count= 1;
+		for (i=0; i < count; i++) {
+			relay= new RelayCheckbox(i);
+			layout-> addWidget(relay);
+		}
 	}
 
 	setLayout(layout);

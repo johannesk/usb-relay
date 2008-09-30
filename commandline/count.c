@@ -36,7 +36,10 @@ int main (int argc, char *argv[])
 	if (argc != 1)
 		usage();
 	
-	usbrelay_init();
+	if (usbrelay_init()!=0) {
+		printf("%s\n", usbrelay_strerror());
+		return 1;
+	}
 	printf("%i\n", usbrelay_count());
 	return 0;
 }
