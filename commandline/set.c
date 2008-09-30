@@ -27,7 +27,7 @@
 void usage()
 {
 	printf("set usb-Relay\n");
-	printf("usage: ./set [digit]\n");
+	printf("usage: ./set [digit] [digit]\n");
 	exit(1);
 }
 
