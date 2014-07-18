@@ -57,6 +57,6 @@ uchar	usbFunctionSetup(uchar data[8])
 
 uchar main(void)
 {
-	DDRB= (1<<3);
+	DDRB= (1<<BIT_SWITCH);
 	main_obdev();
 }
